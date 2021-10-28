@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+      <header>
+          <div class="header">
+            <h2>Task progress Dashboard</h2>
+
+          </div>
+      </header>
+    <div class="left-side-bar">
+
+        <h2>Finished Tasks</h2>
+        <ul>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fas fa-user-friends"></i></span>
+                    <span class="item">People</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
+                    <span class="item">Perfomance</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fas fa-database"></i></span>
+                    <span class="item">Development</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="item">Reports</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><i class="fas fa-user-shield"></i></span>
+                    <span class="item">Admin</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    </div>
+
+ <div class="container">
+     <div class="nav-input">
+         <div class="search-input">
+            <input class="search-bar" type="text" placeholder="Search the task" >
+            
+            <span id="search"  aria-hidden="true" data-icon="&#xe906;" class="down-arrow"></span>
+         </div>
+       
+        
+        
+
+        <button id="open1" class="create-task"  ><span id="task" aria-hidden="true" data-icon="&#xe90b;" class="down-arrow"></span></button>
+        <div class="hide">Create task</div>
+     </div>
+
+
+     <div id="modal-container">
+        
+         <div class="form-container">
+            <form id="modal" class="modal"  >
+                <br><br>
+                
+                <label id="label-tname" for="tname">Task name:</label><br>
+                <input  type="text" id="tname" name="tname"  ><br><br>
+                <label id="label-desc" for="desc">Task description:</label><br>
+                <!-- <input type="text" id="desc" name="desc" ><br><br> -->
+                <textarea id="desc"  name="desc" rows="4" cols="50" placeholder="description" ></textarea> <br><br>
+                <label id="label-deadline" for="deadline">Deadline:</label><br>
+                <!-- <input type="text" id="deadline" name="deadline" ><br><br> -->
+                <input type="date" id="deadline"  name="deadline" value="2021-10-22" min="2021-01-01" max="2021-12-31" required><br><br>
+                
+                <label for="duty">The person in charge:</label><br><br>
+            
+                <input type="checkbox"  id="employee1" name="employee1" >
+                <label for="employee1" class="label"> Gultaj</label>
+                <input type="checkbox" id="employee2" name="employee2">
+                <label for="employee2" class="label">Azad</label>
+                <input type="checkbox"  id="employee3" name="employee3">
+                <label for="employee3" class="label"> Shirin</label><br><br>
+                <!-- <input id="submit" type="submit" value="Submit"> -->
+                <!-- <button id="submit" onclick="submitForm()">submit</button> -->
+                <!-- <button id="submit" >submit</button> -->
+                <p class="another-cancel" id="cancel">cancel</p>
+                <button type="submit"  id="submit">submit</button>
+              </form>
+         </div>
+         
+ 
+      
+         
+     </div>
+
+
+     <div id="task-accordion">
+       <div class="task-list" id="taskList">
+             <div class="task-heading">
+                <h3>Responsive web page <img class="plus-minus"  id="plus-minus" src="./images/Union 3.svg" alt=""></h3> 
+             </div>
+
+             
+            <div class="task-info">
+                <p> <b>Deadline:</b> 24.10.2021</p>
+                <p> <b>The person/people in charge:</b></p>
+                <p> <b>Description for the task: </b> loem ipsum dothbsgvd udsfufvs hbdcdbhufjfifi fiuh ifne isrhe dfhhuee iuerer iudhiuf 
+                   d hdfyusdgf ushfugs hfuy</p>
+                
+            </div>
+            
+       </div>
+       <div class="task-list">
+            <div class="task-heading">
+               <h3>Responsive web page <img class="plus-minus"  id="plus-minus" src="./images/Union 3.svg" alt=""></h3> 
+            </div>
+
+            
+           <div class="task-info">
+               <p> <b>Deadline:</b> 24.10.2021</p>
+               <p> <b>The person/people in charge:</b></p>
+               <p> <b>Description for the task: </b> loem ipsum dothbsgvd udsfufvs hbdcdbhufjfifi fiuh ifne isrhe dfhhuee iuerer iudhiuf 
+                  d hdfyusdgf ushfugs hfuy</p>
+               
+           </div>
+           
+       </div>
+       <div class="task-list">
+        <div class="task-heading">
+           <h3>Responsive web page <img class="plus-minus"  id="plus-minus" src="./images/Union 3.svg" alt=""></h3> 
+        </div>
+
+        
+       <div class="task-info">
+           <p> <b>Deadline:</b> 24.10.2021</p>
+           <p> <b>The person/people in charge:</b></p>
+           <p> <b>Description for the task: </b> loem ipsum dothbsgvd udsfufvs hbdcdbhufjfifi fiuh ifne isrhe dfhhuee iuerer iudhiuf 
+              d hdfyusdgf ushfugs hfuy</p>
+           
+       </div>
+       
+       </div>
+       <div class="task-list">
+    <div class="task-heading">
+       <h3>Responsive web page <img class="plus-minus"  id="plus-minus" src="./images/Union 3.svg" alt=""></h3> 
+    </div>
+
+    
+   <div class="task-info">
+       <p> <b>Deadline:</b> 24.10.2021</p>
+       <p> <b>The person/people in charge:</b></p>
+       <p> <b>Description for the task: </b> loem ipsum dothbsgvd udsfufvs hbdcdbhufjfifi fiuh ifne isrhe dfhhuee iuerer iudhiuf 
+          d hdfyusdgf ushfugs hfuy</p>
+       
+   </div>
+   
+       </div>
+    </div>
+
+   
+   
+   
+</div>
+    <div class="right-side-bar">
+        
+    </div>
+   
+   
+   
+   
+   <script>
+
+
+
+
+//---------------------------------------open and close modal-----------------------------------------------------------------------------------
+
+        const open1= document.getElementById('open1');
+        const modal_container=document.getElementById('modal');
+
+      open1.addEventListener('click',()=>{
+            modal_container.classList.add('show')
+
+
+        
+        });
+
+   
+
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//-------------------------------------------------dropdown accordion---------------------------------------------------------------------------------
+
+const taskHeadings=document.querySelectorAll("#plus-minus");
+
+taskHeadings.forEach(taskHeading=>{
+    taskHeading.addEventListener('click', event=>{
+        taskHeading.classList.toggle('x-rotate');
+        const taskInfo=event.target.parentNode.parentNode.nextElementSibling;
+        const taskHeader=event.target.parentNode.parentNode;
+        if(taskHeading.classList.contains('x-rotate')){
+           
+            taskInfo.style.display='block';
+            taskHeader.style.borderBottomLeftRadius='0px';
+            taskHeader.style.borderBottomRightRadius='0px';
+
+        }
+        else{
+            taskInfo.style.display='none';
+            taskHeader.style.borderBottomLeftRadius='10px';
+            taskHeader.style.borderBottomRightRadius='10px';
+            
+        }
+    });
+});
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+//-------------------------------------------------submit add div class-------------------------------------------------------------------------------
+const submitBtn=document.getElementById('submit');
+const  accrdContainer=document.getElementById('task-accordion')
+console.log(submitBtn)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+//================================================================================================================================================================================================================================
+
+
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>

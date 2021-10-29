@@ -298,3 +298,10 @@
 i {
   cursor: pointer;
 }
+.task-info-active {
+  display: block;
+}
+.task-header-active {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}

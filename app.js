@@ -3,6 +3,12 @@ const modalForm = document.querySelector("#modal");
 const taskList = document.querySelector(".task-list");
 const taskCont = document.querySelector(".container");
 const taskAc = document.querySelector(".taskAc");
+const tname = document.querySelector("#tname");
+const desc = document.querySelector("#desc");
+const dedln = document.querySelector("#deadline");
+const open1 = document.getElementById("open1");
+const modal_container = document.getElementById("modal");
+const btn = document.querySelector("#modal #submit");
 
 modal.addEventListener("click", (event) => {
   if (event.target.tagName === "P") {
@@ -12,9 +18,49 @@ modal.addEventListener("click", (event) => {
     if (button.textContent === "cancel") {
       modalForm.classList.add("cancel");
       modalForm.classList.remove("show");
+      tname.value = "";
+      desc.value = "";
     }
   }
 });
+
+function inpData() {
+  //create elements;
+  let taskList = document.createElement("div");
+  let taskHead = document.createElement("div");
+  let taskInfo = document.createElement("div");
+  let h3 = document.createElement("h3");
+  let plusImg = document.createElement("img");
+  let iEdt = document.createElement("i");
+  let iRem = document.createElement("i");
+  let pDesc = document.createElement("p");
+  let pDeadLn = document.createElement("p");
+  let pplCharge = document.createElement("p");
+  // add class
+  taskList.classList.add("task-list");
+  taskHead.classList.add("task-heading");
+  taskInfo.classList.add("task-info");
+  plusImg.classList.add("plus-minus");
+  plusImg.setAttribute("id", "plus-minus");
+  plusImg.src = "images/Union 3.svg";
+  iEdt.classList.add("far");
+  iEdt.classList.add("fa-edit");
+  iRem.classList.add("fas");
+  iRem.classList.add("fa-user-times");
+  //Apend child
+  taskAc.appendChild(taskList);
+  taskAc.appendChild(taskInfo);
+  taskList.appendChild(taskHead);
+  taskList.appendChild(taskInfo);
+  taskHead.appendChild(h3);
+  h3.appendChild(plusImg);
+  h3.appendChild(iEdt);
+  h3.appendChild(iRem);
+  taskInfo.appendChild(pDeadLn);
+  taskInfo.appendChild(pplCharge);
+  taskInfo.appendChild(pDesc);
+}
+
 const form = document.querySelector("#modal");
 
 form.addEventListener("submit", (e) => {
@@ -24,27 +70,29 @@ form.addEventListener("submit", (e) => {
   const label = document.querySelectorAll(".label");
   if (tname.value === "" || desc.value === "") {
     alert("say smth");
-  } else {
+  } else if (btn.textContent === "submit") {
     const taskAc = document.querySelector("#task-accordion");
-    taskAc.innerHTML += `
-    
-    <div class="task-list">
-        <div class="task-heading">
-            <h3>
-                ${tname.value}
-                <img class="plus-minus"  id="plus-minus" src="./images/Union 3.svg" alt="">
-                <i class="fas fa-user-times"></i>
-            </h3>
-        </div>
-        <div class="task-info">
-        <p> <b>Deadline:</b> 24.10.2021</p>
-        <p> <b>The person/people in charge:</b>${label.textContent}</p>
-        <p> <b>Description for the task: </b> ${desc.value}</p>
-        
-    </div>
-    </div>
-    `;
-    console.log(document.querySelector(".task-list"));
+    inpData();
+    // taskAc.innerHTML += `
+
+    // <div class="task-list">
+    //     <div class="task-heading">
+    //         <h3>
+    //             ${tname.value}
+    //             <img class="plus-minus"  id="plus-minus" src="./images/Union 3.svg" alt="">
+    //             <i class="far fa-edit"></i>
+    //             <i class="fas fa-user-times"></i>
+
+    //         </h3>
+    //     </div>
+    //     <div class="task-info">
+    //     <p contenteditable="true"> <b contenteditable="true">Deadline:</b> 24.10.2021</p>
+    //     <p contenteditable="true"> <b contenteditable="true">The person/people in charge:</b>${label.textContent}</p>
+    //     <p contenteditable="true"> <b contenteditable="true">Description for the task: </b> ${desc.value}</p>
+
+    // </div>
+    // </div>
+    // `;
   }
 
   tname.value = "";
@@ -70,18 +118,9 @@ form.addEventListener("submit", (e) => {
 // });
 
 //
-taskAc.addEventListener("click", (event) => {
-  let button = event.target;
-  console.log(button);
-  if (event.target.tagName === "I") {
-    let h3 = button.parentNode;
-    let taskHead = h3.parentNode;
-    let taskList = taskHead.parentNode;
-    if (button.className === "fas fa-user-times") {
-      taskAc.removeChild(taskList);
-    }
-  }
-});
+// taskAc.addEventListener("click", (event) => {
+//   let button = event.target;
+// });
 
 // ul.addEventListener("click", (event) => {
 //   if (event.target.tagName === "BUTTON") {
@@ -91,3 +130,40 @@ taskAc.addEventListener("click", (event) => {
 //     if (button.textContent === "Sil") {
 //       ul.removeChild(li);
 //     }
+taskAc.addEventListener("click", (event) => {
+  let button = event.target;
+  let h3 = button.parentNode;
+  let taskHead = h3.parentNode;
+  let taskList = taskHead.parentNode;
+  let taskInfo = taskHead.nextElementSibling;
+  let pParent = taskInfo.children[2];
+  if (event.target.tagName === "IMG") {
+    let taskInfo = button.parentNode.parentNode.nextElementSibling;
+    let taskHeader = button.parentNode.parentNode;
+    taskInfo.classList.toggle("task-info-active");
+    taskHeader.classList.toggle("task-header-active");
+    button.classList.toggle("x-rotate");
+  } else if (event.target.tagName === "I") {
+    if (button.className === "fas fa-user-times") {
+      taskAc.removeChild(taskList);
+    } else if (button.className === "far fa-edit") {
+      button.addEventListener("click", () => {
+        btn.textContent = "Update";
+        tname.value = h3.textContent;
+        desc.value = pParent.textContent;
+        modal_container.classList.add("show");
+
+        btn.addEventListener("click", () => {
+          if (btn.textContent === "Update") {
+            h3.textContent = tname.value;
+            pParent.textContent = desc.value;
+          }
+        });
+      });
+    }
+  }
+});
+
+open1.addEventListener("click", () => {
+  modal_container.classList.add("show");
+});

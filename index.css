@@ -237,11 +237,21 @@
 .task-list h3 {
   height: 40px;
   /* padding-left: 40px; */
-
-  text-align: center;
+  display: flex;
+  margin-left: 30px;
   padding-top: 10px;
 
   position: relative;
+}
+h3 i {
+  margin: 0rem 0.5rem;
+}
+progress[value] {
+  margin: 0rem 2rem;
+  justify-self: center;
+  cursor: pointer;
+  color: aqua;
+  appearance: none;
 }
 
 .task-heading {
@@ -304,4 +314,9 @@ i {
 .task-header-active {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+}
+
+input[type="number"] {
+  width: 30px;
+  height: 16px;
 }

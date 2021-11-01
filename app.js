@@ -26,6 +26,7 @@ modal.addEventListener("click", (event) => {
 
 function inpData() {
   //create elements;
+
   let taskList = document.createElement("div");
   let taskHead = document.createElement("div");
   let taskInfo = document.createElement("div");
@@ -36,6 +37,8 @@ function inpData() {
   let pDesc = document.createElement("p");
   let pDeadLn = document.createElement("p");
   let pplCharge = document.createElement("p");
+  let progress = document.createElement("progress");
+
   // add class
   taskList.classList.add("task-list");
   taskHead.classList.add("task-heading");
@@ -47,18 +50,30 @@ function inpData() {
   iEdt.classList.add("fa-edit");
   iRem.classList.add("fas");
   iRem.classList.add("fa-user-times");
+
+  //Set atrribute
+  progress.setAttribute("max", 100);
+  progress.setAttribute("value", 38);
+
   //Apend child
+  h3.textContent = tname.value;
+  pDesc.textContent = desc.value;
+
   taskAc.appendChild(taskList);
   taskAc.appendChild(taskInfo);
   taskList.appendChild(taskHead);
   taskList.appendChild(taskInfo);
   taskHead.appendChild(h3);
+
   h3.appendChild(plusImg);
   h3.appendChild(iEdt);
   h3.appendChild(iRem);
+  h3.appendChild(progress);
   taskInfo.appendChild(pDeadLn);
   taskInfo.appendChild(pplCharge);
   taskInfo.appendChild(pDesc);
+
+  //value things
 }
 
 const form = document.querySelector("#modal");
@@ -71,7 +86,6 @@ form.addEventListener("submit", (e) => {
   if (tname.value === "" || desc.value === "") {
     alert("say smth");
   } else if (btn.textContent === "submit") {
-    const taskAc = document.querySelector("#task-accordion");
     inpData();
     // taskAc.innerHTML += `
 
@@ -155,15 +169,30 @@ taskAc.addEventListener("click", (event) => {
 
         btn.addEventListener("click", () => {
           if (btn.textContent === "Update") {
-            h3.textContent = tname.value;
-            pParent.textContent = desc.value;
+            h3.firstChild.nodeValue = tname.value;
+            pParent.firstChild.nodeValue = desc.value;
           }
         });
       });
     }
+  } else if (event.target.tagName === "PROGRESS") {
+    let button = event.target;
+    let num = document.createElement("input");
+    num.type = "number";
+    h3 = event.target.parentNode;
+    h3.appendChild(num);
+    num.addEventListener("click", () => {
+      button.setAttribute("value", num.value);
+    });
+    num.addEventListener("keyup", () => {
+      button.setAttribute("value", num.value);
+    });
   }
 });
 
 open1.addEventListener("click", () => {
+  if (btn.textContent === "Update") {
+    btn.textContent = "submit";
+  }
   modal_container.classList.add("show");
 });

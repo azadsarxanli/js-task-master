@@ -7,22 +7,8 @@ const tname = document.querySelector("#tname");
 const desc = document.querySelector("#desc");
 const dedln = document.querySelector("#deadline");
 const open1 = document.getElementById("open1");
-const modal_container = document.getElementById("modal");
 const btn = document.querySelector("#modal #submit");
-
-modal.addEventListener("click", (event) => {
-  if (event.target.tagName === "P") {
-    let button = event.target;
-
-    // let notDone = notAll.parentNode;
-    if (button.textContent === "cancel") {
-      modalForm.classList.add("cancel");
-      modalForm.classList.remove("show");
-      tname.value = "";
-      desc.value = "";
-    }
-  }
-});
+const form = document.querySelector("#modal");
 
 function inpData() {
   //create elements;
@@ -37,7 +23,14 @@ function inpData() {
   let pDesc = document.createElement("p");
   let pDeadLn = document.createElement("p");
   let pplCharge = document.createElement("p");
-  let progress = document.createElement("progress");
+  let progress = document.createElement("div");
+  let progSpan = document.createElement("span");
+  let boldDesc = document.createElement("b");
+  let bolDead = document.createElement("b");
+  let boldPpl = document.createElement("b");
+  let dedSpan = document.createElement("span");
+  let descSpan = document.createElement("span");
+  let pplSpan = document.createElement("span");
 
   // add class
   taskList.classList.add("task-list");
@@ -50,14 +43,11 @@ function inpData() {
   iEdt.classList.add("fa-edit");
   iRem.classList.add("fas");
   iRem.classList.add("fa-user-times");
-
-  //Set atrribute
-  progress.setAttribute("max", 100);
-  progress.setAttribute("value", 38);
+  progress.classList.add("progress-bar");
+  progSpan.classList.add("prog-span");
 
   //Apend child
   h3.textContent = tname.value;
-  pDesc.textContent = desc.value;
 
   taskAc.appendChild(taskList);
   taskAc.appendChild(taskInfo);
@@ -69,88 +59,71 @@ function inpData() {
   h3.appendChild(iEdt);
   h3.appendChild(iRem);
   h3.appendChild(progress);
-  taskInfo.appendChild(pDeadLn);
-  taskInfo.appendChild(pplCharge);
-  taskInfo.appendChild(pDesc);
+  progress.appendChild(progSpan);
 
-  //value things
+  //People Charge
+
+  let boldPplText = document.createTextNode("People in charge:");
+  taskInfo.appendChild(pplCharge);
+  pplCharge.appendChild(boldPpl);
+  pplCharge.appendChild(pplSpan);
+  boldPpl.appendChild(boldPplText);
+
+  //TODO:Dead Line
+  let dedSpanText = document.createTextNode(dedln.value);
+  let bolDeadText = document.createTextNode("deadline: ");
+  taskInfo.appendChild(pDeadLn);
+  pDeadLn.appendChild(bolDead);
+  pDeadLn.appendChild(dedSpan);
+
+  bolDead.appendChild(bolDeadText);
+  dedSpan.appendChild(dedSpanText);
+
+  //P description
+  let descSpanText = document.createTextNode(desc.value);
+  let boldDescText = document.createTextNode("Description: ");
+  taskInfo.appendChild(pDesc);
+  pDesc.appendChild(boldDesc);
+  pDesc.appendChild(descSpan);
+
+  boldDesc.appendChild(boldDescText);
+  descSpan.appendChild(descSpanText);
+
+  // create Number input for progress
+
+  const num = document.createElement("input");
+  num.type = "number";
+  num.classList.add("numInp");
+  //access to the parent
+  num.setAttribute("min", 0);
+  num.setAttribute("max", 100);
+  h3.appendChild(num);
 }
 
-const form = document.querySelector("#modal");
-
-form.addEventListener("submit", (e) => {
+modal.addEventListener("submit", (e) => {
+  // Submit olarkən elementləri UI əlavə etmək
   e.preventDefault();
   const tname = document.querySelector("#tname");
   const desc = document.querySelector("#desc");
-  const label = document.querySelectorAll(".label");
   if (tname.value === "" || desc.value === "") {
     alert("say smth");
   } else if (btn.textContent === "submit") {
     inpData();
-    // taskAc.innerHTML += `
-
-    // <div class="task-list">
-    //     <div class="task-heading">
-    //         <h3>
-    //             ${tname.value}
-    //             <img class="plus-minus"  id="plus-minus" src="./images/Union 3.svg" alt="">
-    //             <i class="far fa-edit"></i>
-    //             <i class="fas fa-user-times"></i>
-
-    //         </h3>
-    //     </div>
-    //     <div class="task-info">
-    //     <p contenteditable="true"> <b contenteditable="true">Deadline:</b> 24.10.2021</p>
-    //     <p contenteditable="true"> <b contenteditable="true">The person/people in charge:</b>${label.textContent}</p>
-    //     <p contenteditable="true"> <b contenteditable="true">Description for the task: </b> ${desc.value}</p>
-
-    // </div>
-    // </div>
-    // `;
   }
 
   tname.value = "";
   desc.value = "";
 });
 
-// taskList.addEventListener("click", (event) => {
-//   if (event.target.tagName === "IMG") {
-//     let rotatePlusbtn = event.target;
-//     let taskInfo = event.target.parentNode.parentNode.nextElementSibling;
-//     const taskHeader = rotatePlusbtn.parentNode.parentNode;
-//     rotatePlusbtn.classList.toggle("x-rotate");
-//     if (rotatePlusbtn.classList.toggle("plus-minus")) {
-//       taskInfo.style.display = "block";
-//       taskHeader.style.borderBottomLeftRadius = "0px";
-//       taskHeader.style.borderBottomRightRadius = "0px";
-//     } else {
-//       taskInfo.style.display = "none";
-//       taskHeader.style.borderBottomLeftRadius = "10px";
-//       taskHeader.style.borderBottomRightRadius = "10px";
-//     }
-//   }
-// });
-
-//
-// taskAc.addEventListener("click", (event) => {
-//   let button = event.target;
-// });
-
-// ul.addEventListener("click", (event) => {
-//   if (event.target.tagName === "BUTTON") {
-//     const button = event.target;
-//     const li = button.parentNode;
-//     const ul = li.parentNode;
-//     if (button.textContent === "Sil") {
-//       ul.removeChild(li);
-//     }
 taskAc.addEventListener("click", (event) => {
+  //UI'daki elementləri update etmək
   let button = event.target;
   let h3 = button.parentNode;
   let taskHead = h3.parentNode;
   let taskList = taskHead.parentNode;
   let taskInfo = taskHead.nextElementSibling;
-  let pParent = taskInfo.children[2];
+  let pParent = taskInfo.firstChild.nextElementSibling.nextElementSibling;
+  console.log(pParent);
   if (event.target.tagName === "IMG") {
     let taskInfo = button.parentNode.parentNode.nextElementSibling;
     let taskHeader = button.parentNode.parentNode;
@@ -161,32 +134,68 @@ taskAc.addEventListener("click", (event) => {
     if (button.className === "fas fa-user-times") {
       taskAc.removeChild(taskList);
     } else if (button.className === "far fa-edit") {
-      button.addEventListener("click", () => {
-        btn.textContent = "Update";
-        tname.value = h3.textContent;
-        desc.value = pParent.textContent;
-        modal_container.classList.add("show");
+      btn.textContent = "Update";
+      let h3 = event.target.parentNode;
 
-        btn.addEventListener("click", () => {
-          if (btn.textContent === "Update") {
-            h3.firstChild.nodeValue = tname.value;
-            pParent.firstChild.nodeValue = desc.value;
-          }
-        });
+      tname.value = h3.firstChild.nodeValue;
+      desc.value = pParent.textContent;
+      modalForm.classList.add("show");
+
+      btn.addEventListener("click", () => {
+        if (btn.textContent === "Update") {
+          h3.firstChild.nodeValue = tname.value;
+          pParent.firstChild.nodeValue = desc.value;
+        }
       });
     }
-  } else if (event.target.tagName === "PROGRESS") {
-    let button = event.target;
-    let num = document.createElement("input");
-    num.type = "number";
-    h3 = event.target.parentNode;
-    h3.appendChild(num);
-    num.addEventListener("click", () => {
-      button.setAttribute("value", num.value);
-    });
+  } else if (event.target.tagName === "DIV") {
+    // create number element
+    let span = button.firstElementChild;
+    let num = event.target.nextElementSibling;
+    console.log(num);
+    //! classlist
+    function numColor() {
+      if (num.value.trim() === "") {
+        span.style.width = 1 + "px";
+        span.style.background = "red";
+      } else {
+        if (num.value == 0 || num.value <= 10) {
+          span.style.background = "red";
+        } else if (num.value > 10 && num.value <= 30) {
+          span.style.background = "orange";
+        } else if (num.value > 30 && num.value <= 60) {
+          span.style.background = "yellow";
+        } else if (num.value > 60 && num.value <= 90) {
+          span.style.background = "yellowGreen";
+        } else {
+          span.style.background = "green";
+        }
+      }
+    }
+
+    num.classList.toggle("numAct");
     num.addEventListener("keyup", () => {
-      button.setAttribute("value", num.value);
+      button.firstElementChild.style.width = num.value + "px";
+      numColor();
     });
+    num.addEventListener("click", () => {
+      button.firstElementChild.style.width = num.value + "px";
+      numColor();
+    });
+  }
+});
+
+modal.addEventListener("click", (event) => {
+  if (event.target.tagName === "P") {
+    let button = event.target;
+
+    // let notDone = notAll.parentNode;
+    if (button.textContent === "cancel") {
+      modalForm.classList.remove("show");
+      modalForm.classList.add("cancel");
+      tname.value = "";
+      desc.value = "";
+    }
   }
 });
 
@@ -194,5 +203,7 @@ open1.addEventListener("click", () => {
   if (btn.textContent === "Update") {
     btn.textContent = "submit";
   }
-  modal_container.classList.add("show");
+
+  modalForm.classList.add("show");
+  modalForm.classList.remove("cancel");
 });

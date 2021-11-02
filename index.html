@@ -73,8 +73,6 @@
 
 
      <div id="modal-container">
-        
-         <div class="form-container">
             <form id="modal" class="modal"  >
                 <br><br>
                 
@@ -99,13 +97,9 @@
                 <!-- <button id="submit" >submit</button> -->
                 <p class="another-cancel" id="cancel">cancel</p>
                 <button type="submit"  id="submit">submit</button>
-              </form>
-         </div>
+            </form>
+      </div>
          
- 
-      
-         
-     </div>
 
 
      <div id="task-accordion" class="taskAc">
@@ -117,11 +111,10 @@
 
              
             <div class="task-info">
-                <p contenteditable="true"> <b>Deadline:</b> 24.10.2021</p>
-                <p contenteditable="true"> <b>The person/people in charge:</b></p>
-                <p contenteditable="true"> <b>Description for the task: </b> loem ipsum dothbsgvd udsfufvs hbdcdbhufjfifi fiuh ifne isrhe dfhhuee iuerer iudhiuf 
+                <p> <b>Deadline:</b> <span></span></p>
+                <p> <b>The person/people in charge:</b></p>
+                <p> <b>Description for the task: </b> loem ipsum dothbsgvd udsfufvs hbdcdbhufjfifi fiuh ifne isrhe dfhhuee iuerer iudhiuf 
                    d hdfyusdgf ushfugs hfuy</p>
-                
             </div>
             
        </div>
@@ -159,7 +152,7 @@
        </div>
        <div class="task-list">
     <div class="task-heading">
-       <h3>Responsive web page      <i class="far fa-edit"></i>           <i class="fas fa-user-times"></i> 
+       <h3>Responsive web page      <i class="far fa-edit"></i>           <i class="fas fa-user-times"></i> <div title="Deyisdir" class="progress-bar"  ><span class="prog-span"></span></div>
          <img class="plus-minus"  id="plus-minus" src="./images/Union 3.svg" alt=""></h3> 
     </div>
 
@@ -176,55 +169,9 @@
    
    
    
-</div>
-    <div class="right-side-bar">
-        
+   </div>
+     <div class="right-side-bar">
     </div>
-   
-   
-   
-   
-   <script>
-
-
-
-
-//---------------------------------------open and close modal-----------------------------------------------------------------------------------
-
-       
-
-   
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-//-------------------------------------------------dropdown accordion---------------------------------------------------------------------------------
-
-// const taskHeadings=document.querySelectorAll("#plus-minus");
-
-// taskHeadings.forEach(taskHeading=>{
-//     taskHeading.addEventListener('click', event=>{
-//         taskHeading.classList.toggle('x-rotate');
-//         const taskInfo=event.target.parentNode.parentNode.nextElementSibling;
-//         const taskHeader=event.target.parentNode.parentNode;
-//         if(taskHeading.classList.contains('x-rotate')){
-           
-//             taskInfo.style.display='block';
-//             taskHeader.style.borderBottomLeftRadius='0px';
-//             taskHeader.style.borderBottomRightRadius='0px';
-
-//         }
-//         else{
-//             taskInfo.style.display='none';
-//             taskHeader.style.borderBottomLeftRadius='10px';
-//             taskHeader.style.borderBottomRightRadius='10px';
-            
-//         }
-//     });
-// });
-
-
-    </script>
     <script src="app.js"></script>
   </body>
 </html>

@@ -1,3 +1,7 @@
+:root {
+  --transiton: 400ms ease;
+}
+
 .header {
   width: 100%;
   position: fixed;
@@ -141,13 +145,13 @@
   display: none;
   transform: translateX(-250px);
 }
-.cancel {
+#modal.cancel {
   transform: translateX(-250px);
-  transition: all 400ms ease;
+  transition: all 1s ease;
   opacity: 0;
+  z-index: -2;
 }
 #modal.show {
-  display: block;
   opacity: 1;
   transition: all 1s;
   /* animation-name: cssAnimation;
@@ -156,22 +160,21 @@
   animation-timing-function: ease;
   animation-fill-mode: forwards; */
   transform: translateX(0px);
-  z-index: 1;
+  z-index: 2;
 }
 
 #modal {
-  position: fixed;
+  position: absolute;
   background-color: white;
   margin-left: 25%;
   width: 700px;
   height: 550px;
   text-align: center;
+  z-index: -2;
   font-size: large;
-  position: relative;
   border-radius: 20px;
   border: 2px solid #d2ddea;
   box-shadow: 3px 3px black;
-  position: absolute;
   opacity: 0;
   transform: translateX(-250px);
 }
@@ -239,19 +242,12 @@
   /* padding-left: 40px; */
   display: flex;
   margin-left: 30px;
-  padding-top: 10px;
-
+  justify-content: flex-start;
+  align-items: center;
   position: relative;
 }
 h3 i {
   margin: 0rem 0.5rem;
-}
-progress[value] {
-  margin: 0rem 2rem;
-  justify-self: center;
-  cursor: pointer;
-  color: aqua;
-  appearance: none;
 }
 
 .task-heading {
@@ -316,7 +312,39 @@ i {
   border-bottom-right-radius: 0px;
 }
 
-input[type="number"] {
+/* ! progress css  */
+
+.progress-bar {
+  display: inline-block;
+  width: 100px;
+  height: 8px;
+  position: relative;
+  background-color: #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  overflow: hidden;
+}
+.progress-bar .prog-span {
+  position: absolute;
+  height: 8px;
+  border-radius: 4px;
+  transition: width var(--transiton), background var(--transiton);
+  width: 1%;
+}
+.numInp {
   width: 30px;
-  height: 16px;
+  height: 12px;
+  display: none;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  margin-left: 0.3rem;
+  font-weight: bold;
+  background: white;
+  font-size: 13px;
+  color: yell;
+}
+.numAct {
+  display: inline-block;
+  background: white;
 }

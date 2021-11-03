@@ -9,6 +9,40 @@ const dedln = document.querySelector("#deadline");
 const open1 = document.getElementById("open1");
 const btn = document.querySelector("#modal #submit");
 const form = document.querySelector("#modal");
+const dropDown = document.querySelector(".drop-down-container");
+let values = [];
+
+function arrValue() {
+  tname.value;
+  desc.value;
+
+  values.push(tname.value, desc.value);
+}
+function drpDown() {
+  dropDown.innerHTML += `
+    <div class="drop-down-mother">
+    <div class="drop-down-head">
+     <span class="task-name" >
+       ${tname.value}
+     </span>
+    
+    <i class="fas fa-angle-down"></i>
+    </div>
+
+    <div class="drop-down-info">
+    <ul>
+    <li><b>Deadline:</b>${dedln.value}</li>
+    <li>
+        <b>People in charge:</b>
+    </li>
+    <li><b>Description:</b>${desc.value}</li>
+    </ul>
+   </div>
+    </div>
+
+  `;
+  arrValue();
+}
 
 function inpData() {
   //create elements;
@@ -109,6 +143,7 @@ modal.addEventListener("submit", (e) => {
     alert("say smth");
   } else if (btn.textContent === "submit") {
     inpData();
+    drpDown();
   }
 
   tname.value = "";
@@ -123,7 +158,7 @@ taskAc.addEventListener("click", (event) => {
   let taskList = taskHead.parentNode;
   let taskInfo = taskHead.nextElementSibling;
   let pParent = taskInfo.firstChild.nextElementSibling.nextElementSibling;
-  console.log(pParent);
+
   if (event.target.tagName === "IMG") {
     let taskInfo = button.parentNode.parentNode.nextElementSibling;
     let taskHeader = button.parentNode.parentNode;
@@ -133,6 +168,9 @@ taskAc.addEventListener("click", (event) => {
   } else if (event.target.tagName === "I") {
     if (button.className === "fas fa-user-times") {
       taskAc.removeChild(taskList);
+      if (values[0] === tname.value && values[1] === desc.value) {
+        alert();
+      }
     } else if (button.className === "far fa-edit") {
       btn.textContent = "Update";
       let h3 = event.target.parentNode;
@@ -152,7 +190,7 @@ taskAc.addEventListener("click", (event) => {
     // create number element
     let span = button.firstElementChild;
     let num = event.target.nextElementSibling;
-    console.log(num);
+
     //! classlist
     function numColor() {
       if (num.value.trim() === "") {
@@ -206,4 +244,18 @@ open1.addEventListener("click", () => {
 
   modalForm.classList.add("show");
   modalForm.classList.remove("cancel");
+});
+
+// left side bar unfinished task
+
+dropDown.addEventListener("click", (event) => {
+  let btn = event.target;
+  if (btn.tagName === "I") {
+    let dropHead = btn.parentNode;
+    dropInfo = dropHead.nextElementSibling;
+    let infoUl = dropInfo.firstElementChild;
+    btn.classList.toggle("drop-down");
+    dropInfo.classList.toggle("drop-info-active");
+    infoUl.classList.toggle("drop-ul");
+  }
 });

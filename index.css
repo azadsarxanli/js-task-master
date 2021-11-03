@@ -1,13 +1,17 @@
 :root {
   --transiton: 400ms ease;
 }
+* {
+  box-sizing: border-box;
+}
 
 .header {
   width: 100%;
   position: fixed;
+  height: 100px;
   top: 0;
   left: 0;
-  height: 100px;
+  z-index: 9;
   background-color: #32a8a0;
   color: white;
 }
@@ -347,4 +351,47 @@ i {
 .numAct {
   display: inline-block;
   background: white;
+}
+
+/* ! down arrow  */
+
+.drop-down-head {
+  background: lemonchiffon;
+}
+.drop-down-info {
+  width: 100%;
+  height: 0px;
+  background: lightskyblue;
+  transition: all var(--transiton);
+}
+.drop-down-info ul {
+  margin: 0;
+  display: none;
+  padding: 0.5rem;
+}
+.drop-down-info li {
+  margin: 0.5rem 0;
+}
+
+.drop-down-container i {
+  cursor: pointer;
+  transition: all 400ms ease;
+}
+i.drop-down {
+  transform: rotateZ(-180deg);
+}
+i {
+  cursor: pointer;
+}
+.drop-info-active {
+  height: 100px;
+  padding: 1rem 0;
+}
+ul.drop-ul {
+  display: block;
+  /* padding: 1rem 2rem; */
+}
+
+.drop-down-mother {
+  margin: 0.5rem 0;
 }

@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+i {
+  cursor: pointer;
+  margin-left: 1rem;
+  transition: all 400ms ease;
+}
+.active {
+  transform: rotateZ(180deg);
+}
+.container {
+  width: 600px;
+  height: 400px;
+  background: coral;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.drop-down-head {
+  width: 400px;
+  background: chartreuse;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+}
+.dropw-down-body {
+  height: 0px;
+  width: 400px;
+  background: rgb(73, 6, 150);
+  transition: all 400ms ease;
+}
+.down-active {
+  height: 200px;
+}
